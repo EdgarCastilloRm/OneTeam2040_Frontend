@@ -1,0 +1,263 @@
+<mat-card *ngIf="dataSource != null" class="example-card" dynamicHeight>
+  <mat-card-title>
+    <div
+      style="
+        margin-right: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+      "
+    >
+      <h1 class="personTitle">
+        {{
+          dataSource.nombre_persona +
+            " " +
+            dataSource.apellido_paterno +
+            " " +
+            dataSource.apellido_materno
+        }}
+      </h1>
+      <mat-icon
+        matTooltip="Editar"
+        matTooltipPosition="after"
+        color="primary"
+        class="bigBtn"
+        (click)="openEditPerson(dataSource)"
+        >edit</mat-icon
+      >
+    </div>
+    <button
+      mat-raised-button
+      (click)="openEditPopUp(dataSource.id_persona)"
+      style="
+        margin-left: auto;
+        background-color: #ffba00;
+        color: #000000;
+        font-weight: bold;
+      "
+    >
+      Cambiar guía
+    </button>
+  </mat-card-title>
+
+  <mat-card-subtitle
+    >Resumen {{ dataSource.nombre_tipo_persona }}
+  </mat-card-subtitle>
+  <hr />
+  <mat-card-content>
+    <mat-accordion [multi]="true">
+      <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Datos Generales </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="grid-container">
+          <div class="area1">
+            <h3>Nombre(s)</h3>
+            <p>{{ dataSource.nombre_persona }}</p>
+            <br />
+            <h3>Teléfono</h3>
+            <p>{{ dataSource.telefono }}</p>
+            <br />
+            <h3>Tipo de persona</h3>
+            <p>{{ dataSource.nombre_tipo_persona }}</p>
+          </div>
+          <div class="area2">
+            <h3>Apellido Paterno</h3>
+            <p>{{ dataSource.apellido_paterno }}</p>
+            <br />
+            <h3>Foto</h3>
+            <p *ngIf="dataSource.foto_persona == true">Sí</p>
+            <p *ngIf="dataSource.foto_persona == false">No</p>
+            <br />
+            <h3>Fecha de nacimiento</h3>
+            <p>{{ dataSource.fecha_nacimiento | date : "dd/MM/yyyy" }}</p>
+          </div>
+          <div class="area3">
+            <h3>Apellido Materno</h3>
+            <p>{{ dataSource.apellido_materno }}</p>
+            <br />
+            <h3>Sexo</h3>
+            <p *ngIf="dataSource.sexo == true">Femenino</p>
+            <p *ngIf="dataSource.sexo == false">Masculino</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Datos Particulares </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngIf="dataSource.id_tipo_persona != 1" class="grid-container">
+          <div class="area1">
+            <h3>Acompañamiento</h3>
+            <p>{{ dataSource.estatus_acomp }}</p>
+            <br />
+            <h3>Nivel escolar</h3>
+            <p>{{ dataSource.nivel_escolar }}</p>
+            <br />
+            <h3>Carrera profesional</h3>
+            <p>{{ dataSource.carrera }}</p>
+            <br />
+            <h3>¿Seguro médico otorgado por la empresa?</h3>
+            <p *ngIf="dataSource.seguro_empresa == true">Sí</p>
+            <p *ngIf="dataSource.seguro_empresa == false">No</p>
+            <br />
+            <h3>Religión</h3>
+            <p>{{ dataSource.nombre_religion }}</p>
+          </div>
+          <div class="area2">
+            <h3>Estado civil</h3>
+            <p>{{ dataSource.nombre_estado_civil }}</p>
+            <br />
+            <h3>Último grado escolar cursado</h3>
+            <p>{{ dataSource.ultimo_grado }}</p>
+            <br />
+            <h3>Empleo</h3>
+            <p>{{ dataSource.nombre_empleo }}</p>
+            <br />
+            <h3>Posición laboral</h3>
+            <p *ngIf="dataSource.posicion_laboral == null">Sin respuesta</p>
+            <p *ngIf="dataSource.posicion_laboral != null">
+              {{ dataSource.posicion_laboral }}
+            </p>
+            <br />
+            <h3>Último sacramento realizado</h3>
+            <p *ngIf="dataSource.nivel_religion == null">Sin respuesta</p>
+            <p *ngIf="dataSource.nivel_religion != null">
+              {{ dataSource.nivel_religion }}
+            </p>
+          </div>
+          <div class="area3">
+            <h3>Seguro Médico</h3>
+            <p>{{ dataSource.nombre_SGM }}</p>
+            <br />
+            <h3>¿Se encuentra estudiando?</h3>
+            <p *ngIf="dataSource.estudiando == true">Sí</p>
+            <p *ngIf="dataSource.estudiando == false">No</p>
+            <br />
+            <h3>Ocupación</h3>
+            <p>{{ dataSource.ocupacion }}</p>
+            <br />
+            <h3>Salario fijo mensual</h3>
+            <p>
+              {{
+                dataSource.salario_fijo_mensual | currency : "MXN" : "symbol"
+              }}
+            </p>
+            <br />
+            <h3>Guía asignado</h3>
+            <p>{{ dataSource.nombre_usr }}</p>
+          </div>
+        </div>
+        <div *ngIf="dataSource.id_tipo_persona == 1" class="grid-container">
+          <div class="area1">
+            <h3>CURP</h3>
+            <p>{{ dataSource.curp }}</p>
+            <br />
+            <h3>Responsable</h3>
+            <p>{{ dataSource.responsable }}</p>
+            <br />
+            <h3>Localidad</h3>
+            <p>{{ dataSource.localidad }}</p>
+            <br />
+            <h3>Número exterior</h3>
+            <p>{{ dataSource.num_ext }}</p>
+            <br />
+            <h3>Estado civil de los padres</h3>
+            <p>{{ dataSource.nombre_estado_civil }}</p>
+            <br />
+            <h3>Número de hermanos</h3>
+            <p>{{ dataSource.numHermanos }}</p>
+            <br />
+            <h3>Hospital de nacimiento</h3>
+            <p>{{ dataSource.hospital }}</p>
+            <br />
+            <h3>Seguro médico</h3>
+            <p>{{ dataSource.nombre_SGM }}</p>
+            <br />
+            <h3>Vacuna Hepatitis B al nacer</h3>
+            <p *ngIf="dataSource.vacuna_hepatitis == null">Sin respuesta</p>
+            <p *ngIf="dataSource.vacuna_hepatitis != null">
+              {{ dataSource.vacuna_hepatitis | date : "dd/MM/yyyy" }}
+            </p>
+            <br />
+            <h3>Religión</h3>
+            <p>{{ dataSource.nombre_religion }}</p>
+          </div>
+          <div class="area2">
+            <h3>Acompañamiento</h3>
+            <p>{{ dataSource.estatus_acomp }}</p>
+            <br />
+            <h3>Estado</h3>
+            <p>{{ dataSource.estado }}</p>
+            <br />
+            <h3>Colonia</h3>
+            <p>{{ dataSource.colonia }}</p>
+            <br />
+            <h3>Número interior</h3>
+            <p *ngIf="dataSource.num_int == null">Sin respuesta</p>
+            <p *ngIf="dataSource.num_int != null">{{ dataSource.num_int }}</p>
+            <br />
+            <h3>Casa</h3>
+            <p>{{ dataSource.casa }}</p>
+            <br />
+            <h3>Registro civil</h3>
+            <p *ngIf="dataSource.registro_civil == true">Sí</p>
+            <p *ngIf="dataSource.registro_civil == false">No</p>
+            <br />
+            <h3>Peso</h3>
+            <p>{{ dataSource.peso }}</p>
+            <br />
+            <h3>Foto de cartilla de vacunación</h3>
+            <p *ngIf="dataSource.foto_cartilla == true">Sí</p>
+            <p *ngIf="dataSource.foto_cartilla == false">No</p>
+            <br />
+            <h3>Vacuna auditiva</h3>
+            <p *ngIf="dataSource.vacuna_auditiva == true">Sí</p>
+            <p *ngIf="dataSource.vacuna_auditiva == false">No</p>
+            <br />
+            <h3>Bautizo</h3>
+            <p *ngIf="dataSource.bautizado == true">Sí</p>
+            <p *ngIf="dataSource.bautizado == false">No</p>
+          </div>
+          <div class="area3">
+            <h3>¿Cómo te enteraste del plan?</h3>
+            <p>{{ dataSource.enteradoPlan }}</p>
+            <br />
+            <h3>Municipio</h3>
+            <p>{{ dataSource.municipio }}</p>
+            <br />
+            <h3>Calle</h3>
+            <p>{{ dataSource.calle }}</p>
+            <br />
+            <h3>Código postal</h3>
+            <p>{{ dataSource.codigo_postal }}</p>
+            <br />
+            <h3>Familia de confianza</h3>
+            <p *ngIf="dataSource.fam_confianza == true">Sí</p>
+            <p *ngIf="dataSource.fam_confianza == false">No</p>
+            <br />
+            <h3>Foto acta de nacimiento</h3>
+            <p *ngIf="dataSource.foto_acta == true">Sí</p>
+            <p *ngIf="dataSource.foto_acta == false">No</p>
+            <br />
+            <h3>Estatura</h3>
+            <p>{{ dataSource.estatura }}</p>
+            <br />
+            <h3>Vacuna BGC</h3>
+            <p *ngIf="dataSource.vacuna_BGC == null">Sin respuesta</p>
+            <p *ngIf="dataSource.vacuna_BGC != null">
+              {{ dataSource.vacuna_BGC | date : "dd/MM/yyyy" }}
+            </p>
+            <br />
+            <h3>Vacuna tamiz</h3>
+            <p *ngIf="dataSource.vacuna_tamiz == true">Sí</p>
+            <p *ngIf="dataSource.vacuna_tamiz == false">No</p>
+            <br />
+            <h3>Guía asignado</h3>
+            <p>{{ dataSource.nombre_usr }}</p>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

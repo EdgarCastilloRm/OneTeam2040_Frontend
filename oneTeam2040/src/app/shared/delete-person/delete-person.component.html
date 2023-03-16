@@ -1,0 +1,12 @@
+<div style="padding: 1rem;">
+    <div style="text-align: center;">
+        <h1 style="font-weight: bold;">ATENCIÓN</h1>
+        <p>Se encuentra a punto de borrar a una persona de los registros.</p>
+        <p>Una vez borrada no será posible recuperarla.</p>
+        <mat-checkbox [checked]="disabled" (change)="disabled = !disabled" color="primary">Sí, estoy de acuerdo con el borrado.</mat-checkbox>
+    </div>
+    <div style="text-align: center; margin-top: 1rem;">
+        <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+        <button mat-raised-button style="margin-left: 10px;" color="primary" [disabled]="!disabled" (click)="deletePersona()">Borrar</button>
+    </div>
+</div>

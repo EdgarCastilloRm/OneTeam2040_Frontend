@@ -1,0 +1,29 @@
+<mat-toolbar class="navbar">
+    <button mat-button routerLink="/home" style="height:auto; width: auto;">
+      <img
+        class="logo"
+        src="https://plan-2040.org/wp-content/uploads/2022/09/logo-general.png"
+        alt="Indp2040"
+      />
+    </button>
+  
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+  
+    <button mat-button [mat-menu-trigger-for]="menuCuenta" style="height:auto; width: auto;">
+      <img
+        class="account-picture"
+        src="https://www.logolynx.com/images/logolynx/4b/4beebce89d681837ba2f4105ce43afac.png"
+        alt="Cuenta"
+      />
+    </button>
+  </mat-toolbar>
+  
+  <mat-menu #menuCuenta="matMenu">
+    <div>
+      <h2 class="userData">{{userData.nombre_usr}}</h2>
+      <h4 class="userData">{{userData.email}}</h4>
+      <h4 class="userData">{{userData.region}}</h4>
+    </div>
+    <button (click)="signOut()" mat-button class="signOut">Cerrar sesión</button>
+  </mat-menu>

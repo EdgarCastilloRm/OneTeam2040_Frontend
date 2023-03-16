@@ -1,0 +1,16 @@
+<div class="container">
+    <h1 mat-dialog-title>Cambiar guía asignado</h1>
+    <div mat-dialog-content>
+        <form [formGroup]="form">
+            <mat-form-field appearance="outline">
+                <mat-label>Seleccione guía</mat-label>
+                <mat-select [formControl]="optionsControl" required>
+                <mat-option *ngFor="let option of options" [value]="option.id_usr">
+                    {{option.nombre_usr}}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <button (click)="editGuide()" mat-raised-button style="background-color: #ffba00; font-weight: bold;" >Actualizar</button>
+    </div>
+</div>

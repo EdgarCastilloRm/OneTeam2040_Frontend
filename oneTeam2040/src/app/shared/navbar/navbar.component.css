@@ -1,0 +1,146 @@
+mat-toolbar {
+    background-color:#6CB4EE;
+    height: 12%;
+    width: 100%;
+}
+
+::ng-deep .mat-menu-content {
+
+    background-color: lightgray;
+}
+
+mat-menu-item {
+    background-color: #6CB4EE;
+}
+
+button {
+    color: white;
+    background-color: #6CB4EE;
+}
+
+button:hover {
+    text-decoration: underline;
+}
+
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.account-picture {
+    max-width: 40px;
+    min-height: 40px;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    padding: 25%;
+}
+
+.logo{
+    min-width: 5rem;
+    max-width : 8rem;
+    max-height : 6rem;
+    position : relative;
+}
+
+.active {
+    background: #fdb814;
+}
+
+.userData{
+    margin: 8px;
+    text-align:end;
+    color: black;
+    padding: 3px;
+}
+
+.signOut{
+    margin: 0 0 0 2rem;
+    width: 70%;
+    text-align: center;
+    color: white !important;
+    background-color: #E52B50;
+}
+
+@media screen and (max-width: 820px) {
+    mat-toolbar {
+        background-color:#6CB4EE;
+        height: 10%;
+        padding-left: 1rem;
+        padding-right: 2rem;
+    }
+
+    .account-picture {
+        max-width: 50px;
+        min-height: 50px;
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+        padding: 25%;
+    }
+
+    .userData{
+        margin: 8px;
+        text-align:end;
+        color: black;
+        padding: 3px;
+        font-size: 1.2rem;
+    }
+
+    .signOut{
+        margin: 0 0 0 2rem;
+        width: 70%;
+        height: 3rem;
+        text-align: center;
+        color: white !important;
+        background-color: #E52B50;
+        font-size: 1.2rem;
+    }
+
+    .logo{
+        max-height : 10%;
+        position : relative;
+    }
+
+    
+}
+
+@media screen and (max-width: 400px) {
+    mat-toolbar {
+        background-color:#6CB4EE;
+        height: 10%;
+        padding-left: 0.5rem;
+        padding-right: 1rem;
+    }
+
+    .account-picture {
+        max-width: 35px;
+        min-height: 35px;
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+        padding: 25%;
+    }
+
+    .userData{
+        margin: 8px;
+        text-align:end;
+        color: black;
+        padding: 3px;
+        font-size: 1.2rem;
+    }
+
+    .signOut{
+        margin: 0 0 0 2rem;
+        width: 70%;
+        height: 3rem;
+        text-align: center;
+        color: white !important;
+        background-color: #E52B50;
+        font-size: 1.2rem;
+    }
+
+    .logo{
+        max-height : 10%;
+        position : relative;
+    }
+}

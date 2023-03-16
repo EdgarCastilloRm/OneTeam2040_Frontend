@@ -1,0 +1,104 @@
+table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+border-color: currentColor;
+border-bottom: 1px solid transparent;
+border-top: 1px solid transparent;
+background-color: #E1DDDD;
+opacity: 50%;
+}
+
+
+.search-bar {
+width: 50%;
+padding: 0 8.5rem 0 0;
+}
+/* font-size: larger; /
+}
+.filterTag{
+color:#c0c0c0;
+}
+/ .mat-form-field-infix {
+border-top: 0em solid transparent !important;
+} */
+
+td {
+  width: 25%;
+  text-align: center;
+}
+
+th{
+  width: 25%;
+  font-size: 0.8rem;
+}
+
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+}
+
+.container{
+max-width: 90%;
+margin: 2rem auto;
+}
+
+.mat-column-id_persona {
+  width: 5%;
+}
+.mat-column-nombre_persona {
+  width: 5%;
+}
+.mat-column-apellido_paterno {
+  width: 5%;
+}
+.mat-column-apellido_materno {
+  width: 5%;
+}
+.mat-column-tipo_persona {
+  width: 5%;
+}
+.mat-column-fecha_nacimiento {
+  width: 10%;
+}
+.mat-column-estatus_acomp {
+  width: 5%;
+}
+.mat-column-nombre_usr {
+  width: 10%;
+}
+.mat-column-acciones {
+  width: 7%;
+}
+
+.add {
+  font-size: medium;
+  float: right;
+  margin: 8px 0 0 0 ;
+}
+
+button:hover {
+  opacity: 80%;
+}
+
+.mat-icon-button{
+  background-color: transparent;
+}
+
+button {
+  color: rgb(0, 0, 0);
+  background-color: #FFBA00;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+@media screen and (max-width: 820px) {
+  .search-bar {
+    width: 45%;
+    padding: 0 2rem 0 0;
+  }  
+}

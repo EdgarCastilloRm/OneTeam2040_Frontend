@@ -1,0 +1,540 @@
+<h1
+  mat-dialog-title
+  style="
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    font-size: larger;
+  "
+>
+  {{ titleForm }}
+</h1>
+<div mat-dialog-content>
+  <mat-stepper [linear]="true" #stepper style="text-align: center">
+    <mat-step [stepControl]="datosPersonales" label="Datos generales">
+      <form [formGroup]="datosPersonales">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese su nombre(s)"
+            formControlName="nombre_persona"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Paterno</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese su primer apellido"
+            formControlName="apellido_paterno"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido Materno</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese su segundo apellido"
+            formControlName="apellido_materno"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono</mat-label>
+          <input
+            matInput
+            placeholder="Ingrese su teléfono"
+            formControlName="telefono"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="foto_persona" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Foto</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="sexo" required>
+            <mat-option [value]="false">Masculino</mat-option>
+            <mat-option [value]="true">Femenino</mat-option>
+          </mat-select>
+          <mat-label>Sexo</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_tipo_persona" required>
+            <mat-option type="number" [value]="1">P2040</mat-option>
+            <mat-option type="number" [value]="2">F2040</mat-option>
+            <mat-option type="number" [value]="3">R2040</mat-option>
+            <mat-option type="number" [value]="4">C2040</mat-option>
+          </mat-select>
+          <mat-label>Persona 2040</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            placeholder="MM/DD/YYYY"
+            formControlName="fecha_nacimiento"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </form>
+      <div mat-dialog-actions [align]="'end'">
+        <button
+          mat-raised-button
+          mat-dialog-close
+          style="margin-right: 10px; background-color: #e52b50; color: #ffffff"
+        >
+          Cancelar
+        </button>
+        <button
+          mat-raised-button
+          (click)="stepper.reset()"
+          style="margin-right: 10px; background-color: #ffba00; color: #000000"
+        >
+          Reiniciar
+        </button>
+        <button
+          mat-raised-button
+          matStepperNext
+          style="margin-right: 10px; background-color: #0a9830; color: #ffffff"
+        >
+          Siguiente
+        </button>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="datosEspecificos" label="Datos particulares">
+      <form
+        [formGroup]="datosEspecificos"
+        *ngIf="datosPersonales.controls['id_tipo_persona'].value == 1"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>CURP</mat-label>
+          <input matInput formControlName="curp" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="estatus_acomp" required>
+            <mat-option value="Activo">Activo</mat-option>
+            <mat-option value="Inactivo">Inactivo</mat-option>
+            <mat-option value="Por contactar">Por contactar</mat-option>
+            <mat-option value="Fallecido">Fallecido</mat-option>
+          </mat-select>
+          <mat-label>Acompañamiento</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="enteradoPlan" required>
+            <mat-option value="Boca en boca">Boca en boca</mat-option>
+            <mat-option value="El Plan me buscó">El Plan me buscó</mat-option>
+            <mat-option value="Recomendación de un conocido"
+              >Recomendación de un conocido</mat-option
+            >
+          </mat-select>
+          <mat-label>¿Cómo te enteraste del Plan?</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Responsable</mat-label>
+          <input matInput formControlName="responsable" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input matInput formControlName="estado" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Municipio</mat-label>
+          <input matInput formControlName="municipio" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Localidad</mat-label>
+          <input matInput formControlName="localidad" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Colonia</mat-label>
+          <input matInput formControlName="colonia" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Calle</mat-label>
+          <input matInput formControlName="calle" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Número exterior</mat-label>
+          <input matInput formControlName="num_ext" required type="number" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Número interior</mat-label>
+          <input matInput formControlName="num_int" type="number" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Código Postal</mat-label>
+          <input
+            matInput
+            formControlName="codigo_postal"
+            required
+            type="number"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_estado_civil_padres" required>
+            <mat-option type="number" [value]="1">Casados</mat-option>
+            <mat-option type="number" [value]="2">Divorciados</mat-option>
+            <mat-option type="number" [value]="3">Madre soltera</mat-option>
+            <mat-option type="number" [value]="4">Padre soltero</mat-option>
+            <mat-option type="number" [value]="5">Separados</mat-option>
+            <mat-option type="number" [value]="6">Soltero</mat-option>
+            <mat-option type="number" [value]="7">Unión libre</mat-option>
+            <mat-option type="number" [value]="8">Viudo(a)</mat-option>
+          </mat-select>
+          <mat-label>Estado civil de los padres</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="casa" required>
+            <mat-option value="Propia">Propia</mat-option>
+            <mat-option value="Prestada">Prestada</mat-option>
+            <mat-option value="Renta">Renta</mat-option>
+            <mat-option value="Cohabita Fam. del padre"
+              >Cohabita Fam. del padre</mat-option
+            >
+            <mat-option value="Cohabita Fam. de la madre"
+              >Cohabita Fam. de la madre</mat-option
+            >
+          </mat-select>
+          <mat-label>Casa</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="fam_confianza" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Familia de confianza</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Número de hermanos</mat-label>
+          <input
+            matInput
+            formControlName="numHermanos"
+            required
+            type="number"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="registro_civil" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Registro civil</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="foto_acta" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Foto de acta de nacimiento</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Hospital de nacimiento</mat-label>
+          <input matInput formControlName="hospital" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Peso(kg)</mat-label>
+          <input
+            matInput
+            formControlName="peso"
+            required
+            type="number"
+            step=".001"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Estatura(m)</mat-label>
+          <input
+            matInput
+            formControlName="estatura"
+            required
+            type="number"
+            step=".001"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_SGM" required>
+            <mat-option type="number" [value]="1">IMSS</mat-option>
+            <mat-option type="number" [value]="2">ISSSTE</mat-option>
+            <mat-option type="number" [value]="3">Magisterio</mat-option>
+            <mat-option type="number" [value]="4">No tiene</mat-option>
+            <mat-option type="number" [value]="5">Seguro Insabi</mat-option>
+            <mat-option type="number" [value]="6">Seguro privado</mat-option>
+          </mat-select>
+          <mat-label>Seguro médico</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="foto_cartilla" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Foto de cartila de vacunación</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Vacunas BGC</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker2"
+            placeholder="MM/DD/YYYY"
+            formControlName="vacuna_BGC"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Vacuna Hepatitis B al nacer</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="MM/DD/YYYY"
+            formControlName="vacuna_hepatitis"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="vacuna_auditiva" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Vacuna auditiva</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="vacuna_tamiz" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Vacuna tamiz</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_religion" required>
+            <mat-option type="number" [value]="1">Bautista</mat-option>
+            <mat-option type="number" [value]="2">Católico</mat-option>
+            <mat-option type="number" [value]="3">Cristiano</mat-option>
+            <mat-option type="number" [value]="4"
+              >Evangélica Pentecostés</mat-option
+            >
+            <mat-option type="number" [value]="5">Mormón</mat-option>
+            <mat-option type="number" [value]="6">Ninguna</mat-option>
+            <mat-option type="number" [value]="7">Otro</mat-option>
+          </mat-select>
+          <mat-label>Religión</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="bautizado" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>Bautizo</mat-label>
+        </mat-form-field>
+      </form>
+      <form
+        [formGroup]="datosEspecificos"
+        *ngIf="datosPersonales.controls['id_tipo_persona'].value != 1"
+      >
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="estatus_acomp" required>
+            <mat-option value="Activo">Activo</mat-option>
+            <mat-option value="Inactivo">Inactivo</mat-option>
+            <mat-option value="Por contactar">Por contactar</mat-option>
+            <mat-option value="Fallecido">Fallecido</mat-option>
+          </mat-select>
+          <mat-label>Acompañamiento</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_estado_civil" required>
+            <mat-option type="number" [value]="1">Casados</mat-option>
+            <mat-option type="number" [value]="2">Divorciados</mat-option>
+            <mat-option type="number" [value]="3">Madre soltera</mat-option>
+            <mat-option type="number" [value]="4">Padre soltero</mat-option>
+            <mat-option type="number" [value]="5">Separados</mat-option>
+            <mat-option type="number" [value]="6">Soltero</mat-option>
+            <mat-option type="number" [value]="7">Unión libre</mat-option>
+            <mat-option type="number" [value]="8">Viudo(a)</mat-option>
+          </mat-select>
+          <mat-label>Estado civil</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_SGM" required>
+            <mat-option type="number" [value]="1">IMSS</mat-option>
+            <mat-option type="number" [value]="2">ISSSTE</mat-option>
+            <mat-option type="number" [value]="3">Magisterio</mat-option>
+            <mat-option type="number" [value]="4">No tiene</mat-option>
+            <mat-option type="number" [value]="5">Seguro Insabi</mat-option>
+            <mat-option type="number" [value]="6">Seguro privado</mat-option>
+          </mat-select>
+          <mat-label>Seguro médico</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="nivel_escolar" required>
+            <mat-option value="Primaria">Primaria</mat-option>
+            <mat-option value="Secundaria">Secundaria</mat-option>
+            <mat-option value="Preparatoria">Preparatoria</mat-option>
+            <mat-option value="Técnica">Técnica</mat-option>
+            <mat-option value="Profesional">Profesional</mat-option>
+          </mat-select>
+          <mat-label>Nivel escolar</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Último grado escolar cursado</mat-label>
+          <input matInput formControlName="ultimo_grado" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="estudiando" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>¿Se encuentra estudiando?</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Carrera profesional</mat-label>
+          <input matInput formControlName="carrera" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_empleo" required>
+            <mat-option type="number" [value]="1">Ventas</mat-option>
+            <mat-option type="number" [value]="2">Construcción</mat-option>
+            <mat-option type="number" [value]="3">Gobierno</mat-option>
+            <mat-option type="number" [value]="4"
+              >Persona no económicamente activa</mat-option
+            >
+            <mat-option type="number" [value]="5">Ama de casa</mat-option>
+            <mat-option type="number" [value]="6">Sin empleo</mat-option>
+            <mat-option type="number" [value]="7">Industria</mat-option>
+            <mat-option type="number" [value]="8">Limpieza</mat-option>
+            <mat-option type="number" [value]="9">Estudiante</mat-option>
+            <mat-option type="number" [value]="10">Secretaria</mat-option>
+            <mat-option type="number" [value]="11">Chofer</mat-option>
+            <mat-option type="number" [value]="12">Comercio</mat-option>
+            <mat-option type="number" [value]="13">Recepcionista</mat-option>
+            <mat-option type="number" [value]="14">Cocinera</mat-option>
+            <mat-option type="number" [value]="15">Costurera</mat-option>
+            <mat-option type="number" [value]="16">Agrícola</mat-option>
+            <mat-option type="number" [value]="17">Albañilería</mat-option>
+            <mat-option type="number" [value]="18">Jardinería</mat-option>
+            <mat-option type="number" [value]="19">Mecánico</mat-option>
+            <mat-option type="number" [value]="20">Herrería</mat-option>
+            <mat-option type="number" [value]="21">Electricista</mat-option>
+            <mat-option type="number" [value]="22">Otro</mat-option>
+          </mat-select>
+          <mat-label>Empleo</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="ocupacion" required>
+            <mat-option value="Ama de casa">Ama de casa</mat-option>
+            <mat-option value="Desempleado">Desempleado</mat-option>
+            <mat-option value="Empleado">Empleado</mat-option>
+            <mat-option value="Estudiante">Estudiante</mat-option>
+          </mat-select>
+          <mat-label>Ocupación</mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="seguro_empresa" required>
+            <mat-option [value]="true">Sí</mat-option>
+            <mat-option [value]="false">No</mat-option>
+          </mat-select>
+          <mat-label>¿Seguro médico otorgado por la empresa?</mat-label>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="posicion_laboral">
+            <mat-option value="Empleado">Empleado</mat-option>
+            <mat-option value="Empleador">Empleador</mat-option>
+            <mat-option value="Trabajador por cuenta propia"
+              >Trabajador por cuenta propia</mat-option
+            >
+            <mat-option value="Trabajador sin salario fijo"
+              >Trabajador sin salario fijo</mat-option
+            >
+          </mat-select>
+          <mat-label>Posición laboral</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Salario fijo mensual</mat-label>
+          <input
+            matInput
+            formControlName="salario_fijo_mensual"
+            type="number"
+            step=".001"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="id_religion" required>
+            <mat-option type="number" [value]="1">Bautista</mat-option>
+            <mat-option type="number" [value]="2">Católico</mat-option>
+            <mat-option type="number" [value]="3">Cristiano</mat-option>
+            <mat-option type="number" [value]="4"
+              >Evangélica Pentecostés</mat-option
+            >
+            <mat-option type="number" [value]="5">Mormón</mat-option>
+            <mat-option type="number" [value]="6">Ninguna</mat-option>
+            <mat-option type="number" [value]="7">Otro</mat-option>
+          </mat-select>
+          <mat-label>Religión</mat-label>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="nivel_religion">
+            <mat-option value="Bautizo">Bautizo</mat-option>
+            <mat-option value="Comunión">Comunión</mat-option>
+            <mat-option value="Confirmación">Confirmación</mat-option>
+            <mat-option value="Matrimonio">Matrimonio</mat-option>
+            <mat-option value="Entronización">Entronización</mat-option>
+          </mat-select>
+          <mat-label>Último sacramento realizado</mat-label>
+        </mat-form-field>
+      </form>
+      <div mat-dialog-actions [align]="'end'">
+        <button
+          mat-raised-button
+          mat-dialog-close
+          style="margin-right: 10px; background-color: #e52b50; color: #ffffff"
+        >
+          Cancelar
+        </button>
+        <button
+          mat-raised-button
+          (click)="stepper.reset()"
+          style="margin-right: 10px; background-color: #ffba00; color: #000000"
+        >
+          Reiniciar
+        </button>
+        <button
+          *ngIf="datosPersonales.controls['id_tipo_persona'].value != 1"
+          mat-raised-button
+          matStepperNext
+          style="margin-right: 10px; background-color: #0a9830; color: #ffffff"
+          (click)="addPerson()"
+        >
+          {{ actionBtn }}
+        </button>
+        <button
+          *ngIf="datosPersonales.controls['id_tipo_persona'].value == 1"
+          mat-raised-button
+          matStepperNext
+          style="margin-right: 10px; background-color: #0a9830; color: #ffffff"
+          (click)="addInfant()"
+        >
+          {{ actionBtn }}
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
