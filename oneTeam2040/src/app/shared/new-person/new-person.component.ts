@@ -83,7 +83,7 @@ export class NewPersonComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public editData: any
   ) {}
 
-  userData = JSON.parse(localStorage.getItem('token') || '{}');
+  userData = this.api.getJsonValue('token');
 
   ngOnInit(): void {
 

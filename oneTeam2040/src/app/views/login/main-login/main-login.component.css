@@ -85,7 +85,8 @@ body {
     font-size: medium;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    color: #ff8a65;
+    background-color: #b41961;
+    color: #ffffff;
 }
 
 .login-wrapper mat-card-header {
