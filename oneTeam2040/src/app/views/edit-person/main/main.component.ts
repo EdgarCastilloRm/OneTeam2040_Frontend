@@ -71,7 +71,6 @@ export class MainComponent implements OnInit {
       data: {id_persona: id}
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
-        console.log("test")
         this.getPersonInfo(this.personIdFromRoute);
       }
     });
